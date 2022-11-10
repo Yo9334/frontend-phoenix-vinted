@@ -66,7 +66,7 @@ const Offer = () => {
             </div>
 
             <div className="bloc-3">
-              <button className="btn-green">Acheter</button>
+              <button className="btn-green btn-pad">Acheter</button>
             </div>
           </div>
         </div>
