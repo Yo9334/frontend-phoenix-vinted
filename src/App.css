@@ -25,10 +25,13 @@ h2 {
 h3 {
   font-size: 14px;
 }
-
 h4,
 span {
   font-size: 12px;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 
 /* Header */
@@ -242,10 +245,9 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: 400px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 20px;
   gap: 10px;
 }
 
@@ -303,4 +305,18 @@ button {
   justify-content: center;
   align-items: center;
   margin: 10px;
+}
+
+.btn-close {
+  border: white solid 1px;
+  background-color: white;
+}
+
+.btn-close:hover {
+  border: grey solid 1px;
+}
+
+.btn-link:hover {
+  cursor: pointer;
+  font-weight: 600;
 }

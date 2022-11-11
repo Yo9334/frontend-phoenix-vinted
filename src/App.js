@@ -57,7 +57,12 @@ function App() {
         </Routes>
 
         {visible && (
-          <Signup url={url} handleToken={handleToken} setVisible={setVisible} />
+          <Signup
+            url={url}
+            handleToken={handleToken}
+            setVisible={setVisible}
+            setVisibleLogin={setVisibleLogin}
+          />
         )}
 
         {visibleLogin && (
@@ -65,6 +70,7 @@ function App() {
             url={url}
             handleToken={handleToken}
             setVisibleLogin={setVisibleLogin}
+            setVisible={setVisible}
           />
         )}
       </Router>

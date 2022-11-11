@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ url, handleToken, setVisibleLogin }) => {
+const Login = ({ url, handleToken, setVisibleLogin, setVisible }) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -10,6 +10,10 @@ const Login = ({ url, handleToken, setVisibleLogin }) => {
   const [errorMsg, setErrorMsg] = useState("");
 
   const fetchData = async () => {
+    if (errorMsg !== "") {
+      setErrorMsg("");
+    }
+
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/login",
@@ -54,6 +58,7 @@ const Login = ({ url, handleToken, setVisibleLogin }) => {
       >
         {/* button pour fermer la modal */}
         <button
+          className="btn-close"
           onClick={() => {
             setVisibleLogin(false);
           }}
@@ -63,6 +68,7 @@ const Login = ({ url, handleToken, setVisibleLogin }) => {
         <div className="Login--form">
           <form onSubmit={handleSubmit}>
             <h2>Se connecter</h2>
+
             <input
               type="text"
               name="email"
@@ -93,7 +99,17 @@ const Login = ({ url, handleToken, setVisibleLogin }) => {
                 Se connecter
               </button>
             </div>
-            <span>Pas encore de compte ? Incris-toi !</span>
+            {/* <Link to="/signup"> */}
+            <span
+              className="btn-link"
+              onClick={() => {
+                setVisibleLogin(false);
+                setVisible(true);
+              }}
+            >
+              Pas encore de compte ? Incris-toi !
+            </span>
+            {/* </Link> */}
           </form>
         </div>
       </div>

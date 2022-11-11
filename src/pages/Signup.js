@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = ({ url, handleToken, setVisible }) => {
+const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -34,7 +34,7 @@ const Signup = ({ url, handleToken, setVisible }) => {
         setErrorMsg("Error...");
       }
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       if (error.response.status === 409) {
         setErrorMsg("Cet email existe déjà !");
       } else {
@@ -63,6 +63,7 @@ const Signup = ({ url, handleToken, setVisible }) => {
       >
         {/* button pour fermer la modal */}
         <button
+          className="btn-close"
           onClick={() => {
             setVisible(false);
           }}
@@ -125,7 +126,17 @@ const Signup = ({ url, handleToken, setVisible }) => {
               </button>
             </div>
 
-            <span>Tu as déjà un compte ? Connecte-toi !</span>
+            {/* <Link to="/login"> */}
+            <span
+              className="btn-link"
+              onClick={() => {
+                setVisible(false);
+                setVisibleLogin(true);
+              }}
+            >
+              Tu as déjà un compte ? Connecte-toi !
+            </span>
+            {/* </Link> */}
           </form>
         </div>
       </div>
