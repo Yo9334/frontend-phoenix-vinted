@@ -26,7 +26,7 @@ const OfferCard = ({ offerInfos }) => {
       </div>
 
       <div className="HomeItem--pic">
-        <img src={offerInfos.product_image.url} alt="" />
+        <img src={offerInfos.product_image.secure_url} alt="/" />
       </div>
 
       <div className="HomeItem--content">

@@ -92,7 +92,7 @@ const Login = ({ url, handleToken, setVisibleLogin, setVisible }) => {
               }}
             />
 
-            {errorMsg && <p>{errorMsg}</p>}
+            {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
 
             <div className="Login--submit">
               <button type="submit" className="btn-green btn-pad">

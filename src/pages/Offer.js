@@ -8,7 +8,6 @@ const Offer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // console.log("useEffect");
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -29,9 +28,19 @@ const Offer = () => {
       {loading && <p>Loading...</p>}
       {!loading && (
         <div className="Offer--main">
-          <div className="Offer--pic">
-            <img src={data.product_pictures[0].url} alt="" />
-          </div>
+          {data.product_pictures.length > 0 ? (
+            <div className="Offer--pic">
+              {data.product_pictures.slice(0, 1).map((elem) => {
+                return (
+                  <img key={elem.asset_id} src={elem.secure_url} alt="/" />
+                );
+              })}
+            </div>
+          ) : (
+            <div key={data.product_image.asset_id} className="Offer--pic">
+              <img src={data.product_image.secure_url} alt="/" />
+            </div>
+          )}
 
           <div className="Offer--details">
             <div className="Offer--price">

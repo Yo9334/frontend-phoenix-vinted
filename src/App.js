@@ -11,10 +11,19 @@ import Signup from "./pages/Signup";
 
 function App() {
   const url = "https://lereacteur-vinted-api.herokuapp.com/";
+  const objSearch = {
+    title: "",
+    priceMin: 10,
+    priceMax: 100,
+    sort: true, //price asc
+    page: 0,
+    limit: 0,
+  };
 
   const [token, setToken] = useState(Cookies.get("token") || 0);
   const [visible, setVisible] = useState(false);
   const [visibleLogin, setVisibleLogin] = useState(false);
+  const [search, setSearch] = useState(objSearch);
 
   // Cette fonction permet de stocker le token dans le state
   // et dans les cookies ou supprimer le token dans le state et dans les cookies
@@ -41,9 +50,16 @@ function App() {
           setVisible={setVisible}
           visibleLogin={visibleLogin}
           setVisibleLogin={setVisibleLogin}
+          userSearch={search}
+          setUserSearch={setSearch}
         />
         <Routes>
-          <Route path="/" element={<Home url={url} />} />
+          <Route
+            path="/"
+            element={
+              <Home url={url} userSearch={search} setUserSearch={setSearch} />
+            }
+          />
           <Route path="/offer/:id" element={<Offer url={url} />} />
           {/*
           <Route

@@ -8,7 +8,15 @@ const Header = ({
   setVisible,
   visibleLogin,
   setVisibleLogin,
+  userSearch,
+  setUserSearch,
 }) => {
+  const handleSearch = (event) => {
+    const newSearch = { ...userSearch };
+    newSearch.title = event.target.value;
+    setUserSearch(newSearch);
+  };
+
   return (
     <header>
       <div className="container">
@@ -18,8 +26,11 @@ const Header = ({
 
         <input
           type="search"
+          name="search"
+          value={userSearch.title}
           placeholder="Rechercher des articles"
           className="search-bar"
+          onChange={handleSearch}
         />
         <div className="Header--btn">
           {userToken ? (

@@ -64,10 +64,27 @@ header button {
   align-items: center;
 }
 
+/* Search bar */
+.Search--main {
+  background-color: white;
+  /* margin-bottom: 10px; */
+}
+
+.Search--content {
+  display: flex;
+  align-items: center;
+}
+
+.Search--sort {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
 /* Hero */
 .Hero--main {
   height: 500px;
-  background-color: grey;
+  /* background-color: grey; */
 }
 .Hero--main img {
   height: 100%;
@@ -163,7 +180,7 @@ header button {
   justify-content: space-between;
   margin: 20px 0 40px 0;
   line-height: 20px;
-  font-size: 13px;
+  font-size: 14px;
   border-bottom: 1px solid grey;
   padding-bottom: 50px;
 }
@@ -319,4 +336,9 @@ button {
 .btn-link:hover {
   cursor: pointer;
   font-weight: 600;
+}
+
+/* SuperSimple -- range*/
+.Range--values {
+  margin-left: 20px;
 }

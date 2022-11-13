@@ -12,18 +12,19 @@ const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
   const [errorMsg, setErrorMsg] = useState("");
 
   const fetchData = async () => {
-    const obj = {
-      username: username,
-      email: email,
-      password: password,
-      newsletter: newsletter,
-    };
-    // console.log(objForm);
+    if (errorMsg !== "") {
+      setErrorMsg("");
+    }
 
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        obj
+        {
+          username: username,
+          email: email,
+          password: password,
+          newsletter: newsletter,
+        }
       );
 
       //   console.log(response.data);
@@ -37,6 +38,8 @@ const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
       // console.log("error", error);
       if (error.response.status === 409) {
         setErrorMsg("Cet email existe déjà !");
+      } else if (error.response.status === 400) {
+        setErrorMsg("Veuillez remplir les champs.");
       } else {
         setErrorMsg(error.message);
       }
@@ -90,6 +93,7 @@ const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
               id="email"
               placeholder="Adresse mail"
               value={email}
+              required={true}
               onChange={(event) => {
                 setEmail(event.target.value);
               }}
@@ -118,7 +122,7 @@ const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
               <p>S'incrire à notre newsletter</p>
             </div>
 
-            {errorMsg && <p>{errorMsg}</p>}
+            {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
 
             <div className="Login--submit">
               <button type="submit" className="btn-green btn-pad">
