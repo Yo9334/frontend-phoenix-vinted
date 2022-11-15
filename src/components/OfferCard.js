@@ -26,13 +26,26 @@ const OfferCard = ({ offerInfos }) => {
       </div>
 
       <div className="HomeItem--pic">
-        <img src={offerInfos.product_image.secure_url} alt="/" />
+        <img src={offerInfos.product_image?.secure_url} alt="/" />
       </div>
 
       <div className="HomeItem--content">
         <p>{offerInfos.product_price.toFixed(2)} €</p>
-        <p>{getDetail(offerInfos.product_details, "TAILLE")}</p>
-        <p>{getDetail(offerInfos.product_details, "MARQUE")}</p>
+
+        {offerInfos.product_details && (
+          <>
+            <p>
+              {offerInfos.product_details.length !== 0
+                ? getDetail(offerInfos.product_details, "TAILLE")
+                : "n/a"}
+            </p>
+            <p>
+              {offerInfos.product_details.length !== 0
+                ? getDetail(offerInfos.product_details, "MARQUE")
+                : "n/a"}
+            </p>
+          </>
+        )}
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
+const Signup = ({ url, handleToken, setShow1, setShow2 }) => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -17,19 +17,17 @@ const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
     }
 
     try {
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        {
-          username: username,
-          email: email,
-          password: password,
-          newsletter: newsletter,
-        }
-      );
+      const response = await axios.post(url + "user/signup", {
+        username: username,
+        email: email,
+        password: password,
+        newsletter: newsletter,
+      });
 
-      //   console.log(response.data);
+      console.log(response.data);
+
       if (response.data.token) {
-        handleToken(response.data.token);
+        handleToken(response.data.token, response.data._id);
         navigate("/");
       } else {
         setErrorMsg("Error...");
@@ -55,7 +53,7 @@ const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
     <div
       className="modal-root"
       onClick={() => {
-        setVisible(false);
+        setShow1(false);
       }}
     >
       <div
@@ -68,7 +66,7 @@ const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
         <button
           className="btn-close"
           onClick={() => {
-            setVisible(false);
+            setShow1(false);
           }}
         >
           X
@@ -134,8 +132,8 @@ const Signup = ({ url, handleToken, setVisible, setVisibleLogin }) => {
             <span
               className="btn-link"
               onClick={() => {
-                setVisible(false);
-                setVisibleLogin(true);
+                setShow1(false);
+                setShow2(true);
               }}
             >
               Tu as déjà un compte ? Connecte-toi !

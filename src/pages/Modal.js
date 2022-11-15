@@ -1,4 +1,4 @@
-const Modal = ({ setVisible }) => {
+const Modal = ({ setShow1 }) => {
   return (
     <div className="modal-root">
       <div
@@ -10,7 +10,7 @@ const Modal = ({ setVisible }) => {
         {/* button pour fermer la modal */}
         <button
           onClick={() => {
-            setVisible(false);
+            setShow1(false);
           }}
         >
           X

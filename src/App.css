@@ -161,11 +161,14 @@ header button {
 .Offer--pic {
   width: 500px;
   height: 500px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-y: hidden;
 }
 
 .Offer--pic img {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
 }
 
@@ -245,6 +248,10 @@ button {
 .btn-pad {
   padding: 10px;
   width: 100%;
+}
+
+.btn-pad-md {
+  padding: 10px;
 }
 
 .btn-white {
@@ -341,4 +348,137 @@ button {
 /* SuperSimple -- range*/
 .Range--values {
   margin-left: 20px;
+}
+
+/* Publish */
+.Publish--main {
+  display: flex;
+  flex-direction: column;
+  /* width: 300px; */
+  margin: 0 auto;
+}
+
+.Publish--file {
+  background-color: #fff;
+  box-shadow: 0 0 2px grey;
+  margin: 20px 0;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Publish--bloc {
+  background-color: #fff;
+  box-shadow: 0 0 2px grey;
+  margin: 20px 0;
+  padding: 24px;
+}
+
+.Publish--send {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Publish--input {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #ebedee;
+}
+
+.Publish--input input,
+.Publish--input textarea {
+  border: none;
+  border-bottom: 1px solid #ebedee;
+  color: #000;
+  font-size: 16px;
+  width: 50%;
+}
+
+.Publish--input h4,
+.Publish--input input,
+.Publish--input textarea {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* Payment */
+.Payment--main {
+  background: white;
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.Payment--stripe {
+  margin-top: 40px;
+}
+
+.Payment--main .content {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+
+.Payment--main h4,
+.Payment--main span {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.content-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+.content-total h4,
+.content-total span {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.Payment--main > h3 {
+  color: #999;
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 5px 20px;
+}
+
+.Payment--main .divider {
+  background: hsla(0, 0%, 7%, 0.1);
+  display: block;
+  height: 1px;
+  margin: 24px 0;
+  width: 100%;
+}
+
+.content-article {
+  margin-top: 20px;
+  padding: 5px 20px;
+}
+.content-article p,
+.content-article span {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.content-article span {
+  font-weight: bold;
+}
+
+.payment-card button {
+  background: #00c06d;
+  border: 1px solid;
+  border-color: #00c06d;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  height: 44px;
+  line-height: 22px;
+  margin-top: 8px;
+  padding: 0 14px;
+  width: 100%;
 }

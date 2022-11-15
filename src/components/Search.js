@@ -12,7 +12,7 @@ const Search = ({ userSearch, setUserSearch }) => {
       <div className="container">
         <div className="Search--content">
           <div className="Search--sort">
-            <span>trier par prix :</span>
+            <span>Trier par prix :</span>
             <input
               type="checkbox"
               name="price"

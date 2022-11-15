@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/vinted.png";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({
   userToken,
   handleToken,
-  visible,
-  setVisible,
-  visibleLogin,
-  setVisibleLogin,
+  Show1,
+  setShow1,
+  Show2,
+  setShow2,
   userSearch,
   setUserSearch,
+  requestPage,
+  setRequestPage,
 }) => {
+  const navigate = useNavigate();
+
   const handleSearch = (event) => {
     const newSearch = { ...userSearch };
     newSearch.title = event.target.value;
@@ -55,7 +60,7 @@ const Header = ({
               <button
                 className="btn-white"
                 onClick={() => {
-                  setVisible(!visible);
+                  setShow1(!Show1);
                 }}
               >
                 S'inscrire
@@ -64,15 +69,28 @@ const Header = ({
               <button
                 className="btn-white"
                 onClick={() => {
-                  setVisibleLogin(!visibleLogin);
+                  setShow2(!Show2);
                 }}
               >
                 Se connecter
               </button>
             </>
           )}
-
-          <button className="btn-green">Vends tes articles</button>
+          {userToken ? (
+            <button className="btn-green" onClick={() => navigate("/publish")}>
+              Vends tes articles
+            </button>
+          ) : (
+            <button
+              className="btn-green"
+              onClick={() => {
+                setRequestPage("publish");
+                setShow2(!Show2);
+              }}
+            >
+              Vends tes articles
+            </button>
+          )}
         </div>
       </div>
     </header>

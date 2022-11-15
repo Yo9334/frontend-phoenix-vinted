@@ -2,7 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ url, handleToken, setVisibleLogin, setVisible }) => {
+const Login = ({
+  url,
+  handleToken,
+  setShow2,
+  setShow1,
+  requestPage,
+  setRequestPage,
+}) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -15,18 +22,23 @@ const Login = ({ url, handleToken, setVisibleLogin, setVisible }) => {
     }
 
     try {
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const response = await axios.post(url + "user/login", {
+        email: email,
+        password: password,
+      });
+
+      console.log(response.data);
 
       if (response.data.token) {
-        handleToken(response.data.token);
-        setVisibleLogin(false);
-        navigate("/");
+        handleToken(response.data.token, response.data._id);
+
+        setShow2(false);
+        if (requestPage !== "") {
+          navigate("/" + requestPage);
+          setRequestPage("");
+        } else {
+          navigate("/");
+        }
       }
     } catch (error) {
       // console.log(error.message);
@@ -47,7 +59,7 @@ const Login = ({ url, handleToken, setVisibleLogin, setVisible }) => {
     <div
       className="modal-root"
       onClick={() => {
-        setVisibleLogin(false);
+        setShow2(false);
       }}
     >
       <div
@@ -60,7 +72,7 @@ const Login = ({ url, handleToken, setVisibleLogin, setVisible }) => {
         <button
           className="btn-close"
           onClick={() => {
-            setVisibleLogin(false);
+            setShow2(false);
           }}
         >
           X
@@ -103,8 +115,8 @@ const Login = ({ url, handleToken, setVisibleLogin, setVisible }) => {
             <span
               className="btn-link"
               onClick={() => {
-                setVisibleLogin(false);
-                setVisible(true);
+                setShow2(false);
+                setShow1(true);
               }}
             >
               Pas encore de compte ? Incris-toi !

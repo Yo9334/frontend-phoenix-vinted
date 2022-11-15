@@ -7,38 +7,43 @@ import Login from "./pages/Login";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import Signup from "./pages/Signup";
+import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 // import Modal from "./pages/Modal";
 
 function App() {
-  const url = "https://lereacteur-vinted-api.herokuapp.com/";
-  const objSearch = {
+  // const url = "https://lereacteur-vinted-api.herokuapp.com/";
+  // const url = "https://site--backend-vinted--t9jv7l54vjwq.code.run/";
+  const url = "http://localhost:4000/";
+
+  const userSearch = {
     title: "",
     priceMin: 10,
-    priceMax: 100,
+    priceMax: 450,
     sort: true, //price asc
     page: 0,
-    limit: 0,
+    limit: 100,
   };
 
   const [token, setToken] = useState(Cookies.get("token") || 0);
-  const [visible, setVisible] = useState(false);
-  const [visibleLogin, setVisibleLogin] = useState(false);
-  const [search, setSearch] = useState(objSearch);
+  const [Show1, setShow1] = useState(false);
+  const [Show2, setShow2] = useState(false);
+  const [search, setSearch] = useState(userSearch);
+  const [requestPage, setRequestPage] = useState("");
 
   // Cette fonction permet de stocker le token dans le state
   // et dans les cookies ou supprimer le token dans le state et dans les cookies
-  const handleToken = (token) => {
+  const handleToken = (token, id) => {
     if (token) {
       setToken(token);
       Cookies.set("token", token, { expires: 7 });
+      Cookies.set("userId", id, { expires: 7 });
     } else {
       setToken(null);
       Cookies.remove("token");
+      Cookies.remove("userId");
     }
   };
-
-  //pas de connexion
-  // Cookies.set("token", "1234", { expires: 7 });
 
   return (
     <div className="App">
@@ -46,12 +51,14 @@ function App() {
         <Header
           userToken={token}
           handleToken={handleToken}
-          visible={visible}
-          setVisible={setVisible}
-          visibleLogin={visibleLogin}
-          setVisibleLogin={setVisibleLogin}
+          Show1={Show1}
+          setShow1={setShow1}
+          Show2={Show2}
+          setShow2={setShow2}
           userSearch={search}
           setUserSearch={setSearch}
+          requestPage={requestPage}
+          setRequestPage={setRequestPage}
         />
         <Routes>
           <Route
@@ -70,23 +77,33 @@ function App() {
             path="/signup"
             element={<Signup url={url} handleToken={handleToken} />}
           /> */}
+          <Route
+            path="/publish"
+            element={<Publish url={url} userToken={token} />}
+          />
+          <Route
+            path="/payment"
+            element={<Payment url={url} userToken={token} />}
+          />
         </Routes>
 
-        {visible && (
+        {Show1 && (
           <Signup
             url={url}
             handleToken={handleToken}
-            setVisible={setVisible}
-            setVisibleLogin={setVisibleLogin}
+            setShow1={setShow1}
+            setShow2={setShow2}
           />
         )}
 
-        {visibleLogin && (
+        {Show2 && (
           <Login
             url={url}
             handleToken={handleToken}
-            setVisibleLogin={setVisibleLogin}
-            setVisible={setVisible}
+            setShow2={setShow2}
+            setShow1={setShow1}
+            requestPage={requestPage}
+            setRequestPage={setRequestPage}
           />
         )}
       </Router>
