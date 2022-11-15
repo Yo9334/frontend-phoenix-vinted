@@ -13,8 +13,8 @@ import Payment from "./pages/Payment";
 
 function App() {
   // const url = "https://lereacteur-vinted-api.herokuapp.com/";
-  // const url = "https://site--backend-vinted--t9jv7l54vjwq.code.run/";
-  const url = "http://localhost:4000/";
+  const url = "https://site--backend-vinted--t9jv7l54vjwq.code.run/";
+  // const url = "http://localhost:4000/";
 
   const userSearch = {
     title: "",
